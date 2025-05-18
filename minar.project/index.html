@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Desi Sweets & Gift Hamper</title>
+  <link rel="icon" type="image/x-icon" href="favicon logo.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+  <!-- Header Section -->
+  <header class="header">
+  <div>
+    <a href="#home" class="logo">
+    <img class="logo-image" src="SweeDesi.png" alt="Shuddh Swaadesi Logo">
+     Shuddh SwaaDesi
+    </a>
+ </div>
+    <nav class="nav-container">
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="cart" onclick="toggleCart()">
+        <i class="fas fa-shopping-cart fa-2x"></i>
+        <span class="cart-counter" id="cartCounter">0</span>
+      </div>
+    </nav>
+    <div class="hamburger" onclick="toggleMenu()">
+      <i class="fas fa-bars"></i>
+    </div>
+  </header>
+
+  <!-- Cart Sidebar -->
+  <div class="cart-sidebar">
+    <div class="cart-header">
+      <h3>Your Cart</h3>
+      <i class="fas fa-times close-cart" onclick="closeCart()"></i>
+    </div>
+    <div class="cart-items">
+      <!-- Cart items will be dynamically added here -->
+    </div>
+    <div class="cart-footer">
+      <p>Total: Rs 0.00</p>
+      <button class="checkout-btn">Checkout</button>
+    </div>
+  </div>
+
+  <!-- Payment Modal -->
+  <div id="paymentModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closePaymentModal()">&times;</span>
+      <h2>Complete Your Order</h2>
+
+      <!-- Delivery Details -->
+      <div class="form-section">
+        <h3>Delivery Address</h3>
+        <form id="deliveryForm">
+          <div class="form-group">
+            <input type="text" id="fullName" placeholder="Full Name" required>
+          </div>
+          <div class="form-group">
+            <input type="text" id="address" placeholder="Address" required>
+          </div>
+          <div class="form-group">
+            <input type="text" id="city" placeholder="City" required>
+          </div>
+          <div class="form-group">
+            <input type="text" id="zipCode" placeholder="ZIP Code" required>
+          </div>
+        </form>
+      </div>
+
+      <!-- Payment Details -->
+      <div class="form-section">
+        <h3>Payment Information</h3>
+        <form id="paymentForm">
+          <div class="form-group">
+            <input type="text" id="cardNumber" placeholder="Card Number" required>
+          </div>
+          <div class="form-group">
+            <input type="text" id="expiryDate" placeholder="Expiry Date (MM/YY)" required>
+          </div>
+          <div class="form-group">
+            <input type="text" id="cvv" placeholder="CVV" required>
+          </div>
+        </form>
+      </div>
+
+      <!-- Place Order Button -->
+      <button id="placeOrderBtn" class="order-btn" onclick="placeOrder()">
+        <span>Place Order</span>
+        <i class="fas fa-check-circle"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Order Confirmation Popup -->
+  <div id="orderConfirmationPopup" class="popup">
+    <div class="popup-content">
+      <span class="close-btn" onclick="closeOrderConfirmation()">&times;</span>
+      <i class="fas fa-check-circle popup-icon"></i>
+      <h3>Thank You, <span id="customerName"></span>!</h3>
+      <p>Your order has been placed successfully and will be delivered soon.</p>
+    </div>
+  </div>
+
+  <!-- Hero Section with Parallax Effect -->
+  <section id="home" class="hero">
+    <div class="parallax"></div>
+    <div class="content">
+      <h2>
+      Welcome to
+      <img src="SweeDesi.png" alt="Suddh Swaadesi Logo" style="height:px; vertical-align: middle;">
+      Suddh SwaaDesi
+    </h2>
+    <p>Swaad bhi, Sanskaar bhi - The True Taste of India</p>
+    <a href="#menu" class="btn">Explore Now <i class="fas fa-arrow-right"></i></a>
+  </div>
+    </div>
+  </section>
+
+  <!-- Menu Section -->
+  <section id="menu" class="menu">
+    <div class="container">
+      <h2>"Our Specially Made Indian Sweets" </h2>
+      <div class="menu-items">
+        <div class="item">
+          <img src="sweets.img/sweet1.jpg" alt="Sweets">
+          <h3>Kaju katli</h3>
+          <p>Rs.899 Kg</p>
+          <button class="add-to-cart" data-name="Kaju Katli"  data-image="Sweets.img/sweet1.jpg"data-price="899.00"><i class="fas fa-shopping-cart"></i>
+            Add to Cart</button>
+        </div>
+        <div class="item">
+          <img src="sweets.img/sweet2.jpg" alt="Sweets">
+          <h3>Boondi Laddu</h3>
+          <p>Rs.449 Kg</p>
+          <button class="add-to-cart" data-name="Boondi Laddu" data-image="Sweets.img/sweet2.jpg" data-price="449"><i class="fas fa-shopping-cart"></i> Add
+            to Cart</button>
+        </div>
+        <div class="item">
+          <img src="Sweets.img/sweet3.jpg" alt="Macarons">
+          <h3>Rasgulla </h3>
+          <p>Rs.199 <span class="span-1">500gm</span> </p>
+          <button class="add-to-cart" data-name="Rasgulla" data-image="Sweets.img/sweet3.jpg" data-price="199"><i class="fas fa-shopping-cart"></i> Add to
+            Cart</button>
+        </div>
+        <div class="item">
+          <img src="sweets.img/sweet4.jpg" alt="Macarons">
+          <h3>Kaju Roll</h3>
+          <p>Rs.499 Kg</p>
+          <button class="add-to-cart" data-name="Kaju Roll" data-image="Sweets.img/sweet4.jpg" data-price="499"><i class="fas fa-shopping-cart"></i> Add to
+            Cart</button>
+        </div>
+        <div class="item">
+          <img src="sweets.img/sweet5.jpg" alt="Dune Delights">
+          <h3>Ras Malai</h3>
+          <p>Rs.799 kg</p>
+          <button class="add-to-cart" data-name="Ras Malai" data-image="Sweets.img/sweet5.jpg" data-price="799"><i class="fas fa-shopping-cart"></i>
+            Add to Cart</button>
+        </div>
+        <div class="item">
+          <img src="sweets.img/sweet6.jpg" alt="Macarons">
+          <h3>Gulab Jamun</h3>
+          <p>Rs.380 Kg</p>
+          <button class="add-to-cart" data-name="Gulab Jamun" data-image="Sweets.img/sweet6.jpg" data-price="380"><i class="fas fa-shopping-cart"></i>
+            Add to Cart</button>
+        </div>
+        <div class="item">
+          <img src="sweets.img/sweet7.jpg" alt="Macarons">
+          <h3>DryFruits-Hamper</h3>
+          <p>Rs.999.00</p>
+          <button class="add-to-cart" data-name="DryFruits-Hamper"  data-image="Sweets.img/sweet7.jpg" data-price="999.00"><i class="fas fa-shopping-cart"></i>
+            Add to Cart</button>
+        </div>
+        <div class="item">
+          <img src="sweets.img/sweet8.jpg" alt="Macarons">
+          <h3>Kesar Peda</h3>
+          <p>Rs.599.00 Kg</p>
+          <button class="add-to-cart" data-name="Kesar Peda" data-image="Sweets.img/sweet8.jpg" data-price="599.00"><i class="fas fa-shopping-cart"></i>
+            Add to Cart</button>
+        </div>
+        <div class="item">
+          <img src="sweets.img/sweet9.jpg " alt="Macarons">
+          <h3>Ghewar</h3>
+          <p>Rs.249.00</p>
+          <button class="add-to-cart" data-name="Ghewar" data-image="Sweets.img/sweet9.jpg" data-price="249.00"><i class="fas fa-shopping-cart"></i>
+            Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about mt">
+    <div class="container">
+      <h2 class="section-title">About Us</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p class="intro">Welcome to <span class="highlight">Shuddha Swaadesi </span> - where tradition meets taste! 
+            </p>
+          <p class="description">
+
+            Welcome to Shuddh Swaadesi - where tradition meets taste!
+
+            At Shuddha Swaadesi, we proudly bring you the authentic flavors of Indian sweets made with pure ingredients
+            and a touch of love. Our sweets are crafted using age-old recipes that capture the true essence of our rich
+            culture. From soft gulab jamuns to delicious laddoos, barfis, pedas, and more - every bite is a sweet
+            reminder of home.
+           <br>
+           <br>
+            We believe that every celebration, big or small, deserves the joy of traditional sweets. Thank you for
+            making Shuddha Swaadesi a part of your special moments.
+
+            
+          </p>
+          <a href="#menu" class="btn">Explore Our Menu <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="about-image">
+          <img src="Sweet-thali.png" alt="About Us Image" class="animated-image">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <!-- Animated Cake Icon -->
+      <div class="cake-icon">
+        <i class="fas fa-birthday-cake"></i>
+      </div>
+      <h2 class="section-title">Get in Touch</h2>
+      <div class="info-contact">
+        <div class="contact-info-item">
+          <i class="fas fa-phone"></i>
+          <div class="info-details">
+            <h4>Phone</h4>
+            <p>+1 (234) 567-8900</p>
+          </div>
+        </div>
+
+        <div class="contact-info-item">
+          <i class="fas fa-envelope"></i>
+          <div class="info-details">
+            <h4>Email</h4>
+            <p>info@shuddhswaadesi.com</p>
+          </div>
+        </div>
+
+        <div class="contact-info-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <div class="info-details">
+            <h4>Location</h4>
+            <p>123 Dessert Lane, Sweet City, SC 45678</p>
+          </div>
+        </div>
+      </div>
+
+      <form id="contactForm" class="contact-form">
+        <div class="form-group">
+          <input type="text" id="name" name="name" class="form-input" placeholder=" " required>
+          <label for="name" class="form-label">Your Name</label>
+        </div>
+        <div class="form-group">
+          <input type="email" id="email" name="email" class="form-input" placeholder=" " required>
+          <label for="email" class="form-label">Your Email</label>
+        </div>
+        <div class="form-group">
+          <input type="tel" id="phone" name="phone" class="form-input" placeholder=" " required>
+          <label for="phone" class="form-label">Your Phone</label>
+        </div>
+        <div class="form-group">
+          <textarea id="message" name="message" class="form-input textarea" placeholder=" " required></textarea>
+          <label for="message" class="form-label">Your Message</label>
+        </div>
+        <button type="submit" class="submit-btn">
+          <span>Send Message</span>
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </form>
+
+
+    </div>
+
+
+  </section>
+
+  <!-- Thank You Popup -->
+  <div id="thankYouPopup" class="popup">
+    <div class="popup-content">
+      <span class="close-btn" onclick="closePopup()">&times;</span>
+      <i class="fas fa-check-circle popup-icon"></i>
+      <h3>Thank You, <span id="userName"></span>!</h3>
+      <p>Your message has been sent successfully. We'll get back to you soon.</p>
+    </div>
+  </div>
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="footer-container">
+      <!-- Footer Logo and Description -->
+      <div class="footer-brand">
+        <a href="#home" class="footer-logo">
+    <img class="footer-logo-image" src="SweeDesi.png" alt="Shuddh Swaadesi Logo">
+    <span class="footer-brand-name">Shuddh SwaaDesi</span>
+  </a>
+  <p class="footer-description">
+    Indulge in the sweetest moments of life. Explore our delicious sweets and satisfy your cravings!
+  </p>
+</div>
+        
+      <!-- Quick Links -->
+      <div class="footer-links">
+        <h3 class="footer-heading">Quick Links</h3>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Newsletter Subscription -->
+      <div class="footer-newsletter">
+        <h3 class="footer-heading">Sweet Updates</h3>
+        <p>Subscribe to our newsletter for the latest dessert recipes and offers.</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Your Email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+
+      <!-- Social Media Links -->
+      <div class="footer-social">
+        <h3 class="footer-heading">Follow Us</h3>
+        <div class="social-icons">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <p>&copy; 2023 Sweet Delights. All rights reserved.</p>
+      <p>Made with <i class="fas fa-heart"></i> by Sweets Lovers</p>
+    </div>
+  </footer>
+  <script src="sidebar.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
